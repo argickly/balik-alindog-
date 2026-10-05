@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Workouts / Focus Area | Balik Alindog</title>
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+.focus-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.focus-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,.03);
+}
+
+.focus-image {
+    width: 100%;
+    height: 300px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.focus-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.focus-label {
+    text-align: center;
+    font-weight: 800;
+    padding: 14px 12px;
+    letter-spacing: .4px;
+}
+
+@media (max-width: 900px) {
+    .focus-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .focus-image {
+        height: 260px;
+    }
+}
+
+@media (max-width: 560px) {
+    .focus-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .focus-image {
+        height: 330px;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<header class="topbar">
+    <div class="nav">
+        <a class="brand" href="index.html">BALIK <span>ALINDOG</span></a>
+
+        <nav class="navlinks">
+            <a data-nav href="index.html">HOME</a>
+            <a data-nav href="workouts.html">WORKOUTS / FOCUS AREA</a>
+            <a data-nav href="program.html">PROGRAM</a>
+            <a data-nav href="nutrition.html">NUTRITION</a>
+            <a data-nav href="reminders.html">REMINDERS / TIPS</a>
+            <a data-nav href="profile.html">PROFILE</a>
+            <a data-nav href="settings.html">SETTINGS</a>
+        </nav>
+
+        <div class="nav-actions">
+            <a class="icon-btn" href="login.html">Login</a>
+            <button class="icon-btn menu-btn" id="menuBtn">☰</button>
+        </div>
+    </div>
+
+    <nav class="mobile-nav" id="mobileNav">
+        <a data-nav href="index.html">HOME</a>
+        <a data-nav href="workouts.html">WORKOUTS / FOCUS AREA</a>
+        <a data-nav href="program.html">PROGRAM</a>
+        <a data-nav href="nutrition.html">NUTRITION</a>
+        <a data-nav href="reminders.html">REMINDERS / TIPS</a>
+        <a data-nav href="profile.html">PROFILE</a>
+        <a data-nav href="settings.html">SETTINGS</a>
+    </nav>
+</header>
+
+
+<main class="container">
+    <div class="section-head">
+        <div>
+            <h2>Workouts / Focus Area</h2>
+            <p>Select a focus area to view related exercises and routines.</p>
+        </div>
+    </div>
+
+    <section class="focus-grid">
+        <article class="focus-card">
+            <div class="focus-image">
+                <img src="assets/img/focus/CHEST.png" alt="CHEST muscle focus area">
+            </div>
+            <div class="focus-label">CHEST</div>
+        </article>
+        <article class="focus-card">
+            <div class="focus-image">
+                <img src="assets/img/focus/TRICEPS.png" alt="TRICEPS muscle focus area">
+            </div>
+            <div class="focus-label">TRICEPS</div>
+        </article>
+        <article class="focus-card">
+            <div class="focus-image">
+                <img src="assets/img/focus/SHOULDER.png" alt="SHOULDER muscle focus area">
+            </div>
+            <div class="focus-label">SHOULDER</div>
+        </article>
+        <article class="focus-card">
+            <div class="focus-image">
+                <img src="assets/img/focus/BACK.png" alt="BACK muscle focus area">
+            </div>
+            <div class="focus-label">BACK</div>
+        </article>
+        <article class="focus-card">
+            <div class="focus-image">
+                <img src="assets/img/focus/BICEPS.png" alt="BICEPS muscle focus area">
+            </div>
+            <div class="focus-label">BICEPS</div>
+        </article>
+        <article class="focus-card">
+            <div class="focus-image">
+                <img src="assets/img/focus/CORE.png" alt="CORE muscle focus area">
+            </div>
+            <div class="focus-label">CORE</div>
+        </article>
+        <article class="focus-card">
+            <div class="focus-image">
+                <img src="assets/img/focus/LEGS.png" alt="LEGS muscle focus area">
+            </div>
+            <div class="focus-label">LEGS</div>
+        </article>
+    </section>
+</main>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

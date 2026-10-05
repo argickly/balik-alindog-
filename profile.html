@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Profile | Balik Alindog</title>
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="nav">
+        <a class="brand" href="index.html">BALIK <span>ALINDOG</span></a>
+
+        <nav class="navlinks">
+            <a data-nav href="index.html">HOME</a>
+            <a data-nav href="workouts.html">WORKOUTS / FOCUS AREA</a>
+            <a data-nav href="program.html">PROGRAM</a>
+            <a data-nav href="nutrition.html">NUTRITION</a>
+            <a data-nav href="reminders.html">REMINDERS / TIPS</a>
+            <a data-nav href="profile.html">PROFILE</a>
+            <a data-nav href="settings.html">SETTINGS</a>
+        </nav>
+
+        <div class="nav-actions">
+            <a class="icon-btn" href="login.html">Login</a>
+            <button class="icon-btn menu-btn" id="menuBtn">☰</button>
+        </div>
+    </div>
+
+    <nav class="mobile-nav" id="mobileNav">
+        <a data-nav href="index.html">HOME</a>
+        <a data-nav href="workouts.html">WORKOUTS / FOCUS AREA</a>
+        <a data-nav href="program.html">PROGRAM</a>
+        <a data-nav href="nutrition.html">NUTRITION</a>
+        <a data-nav href="reminders.html">REMINDERS / TIPS</a>
+        <a data-nav href="profile.html">PROFILE</a>
+        <a data-nav href="settings.html">SETTINGS</a>
+    </nav>
+</header>
+
+
+<main class="container">
+    <div class="section-head">
+        <div>
+            <h2>Profile</h2>
+            <p>View and update basic profile information.</p>
+        </div>
+    </div>
+
+    <section class="panel">
+        <div class="form-grid">
+            <div class="field">
+                <label>Full Name</label>
+                <input value="Demo User">
+            </div>
+
+            <div class="field">
+                <label>Email</label>
+                <input type="email" value="demo@example.com">
+            </div>
+
+            <div class="field">
+                <label>Preferred Workout Place</label>
+                <input value="Home">
+            </div>
+
+            <div class="field">
+                <label>Account Status</label>
+                <input value="Prototype Account" disabled>
+            </div>
+        </div>
+
+        <div class="program-actions">
+            <button class="btn btn-dark">Save Profile</button>
+        </div>
+    </section>
+</main>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

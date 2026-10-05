@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Settings | Balik Alindog</title>
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="nav">
+        <a class="brand" href="index.html">BALIK <span>ALINDOG</span></a>
+
+        <nav class="navlinks">
+            <a data-nav href="index.html">HOME</a>
+            <a data-nav href="workouts.html">WORKOUTS / FOCUS AREA</a>
+            <a data-nav href="program.html">PROGRAM</a>
+            <a data-nav href="nutrition.html">NUTRITION</a>
+            <a data-nav href="reminders.html">REMINDERS / TIPS</a>
+            <a data-nav href="profile.html">PROFILE</a>
+            <a data-nav href="settings.html">SETTINGS</a>
+        </nav>
+
+        <div class="nav-actions">
+            <a class="icon-btn" href="login.html">Login</a>
+            <button class="icon-btn menu-btn" id="menuBtn">☰</button>
+        </div>
+    </div>
+
+    <nav class="mobile-nav" id="mobileNav">
+        <a data-nav href="index.html">HOME</a>
+        <a data-nav href="workouts.html">WORKOUTS / FOCUS AREA</a>
+        <a data-nav href="program.html">PROGRAM</a>
+        <a data-nav href="nutrition.html">NUTRITION</a>
+        <a data-nav href="reminders.html">REMINDERS / TIPS</a>
+        <a data-nav href="profile.html">PROFILE</a>
+        <a data-nav href="settings.html">SETTINGS</a>
+    </nav>
+</header>
+
+
+<main class="container">
+
+<div class="section-head">
+    <div>
+        <h2>Settings</h2>
+        <p>Manage your account settings and appearance.</p>
+    </div>
+</div>
+
+<section class="panel">
+    <h3>Change Password</h3>
+
+    <div class="form-grid">
+        <div class="field">
+            <label>Current Password</label>
+            <input type="password" placeholder="Current password">
+        </div>
+
+        <div class="field">
+            <label>New Password</label>
+            <input type="password" placeholder="New password">
+        </div>
+    </div>
+
+    <div class="program-actions">
+        <button class="btn btn-dark">Update Password</button>
+    </div>
+</section>
+
+<section class="panel">
+    <h3>Appearance</h3>
+
+    <div class="theme-switcher">
+        <button class="btn btn-outline" type="button" onclick="setTheme('light')">Light Mode</button>
+        <button class="btn btn-dark" type="button" onclick="setTheme('dark')">Dark Mode</button>
+    </div>
+</section>
+
+<section class="panel">
+    <h3>Preferences</h3>
+
+    <div class="field">
+        <label>Reminder Preference</label>
+        <select>
+            <option>Show in-system reminders</option>
+            <option>Hide in-system reminders</option>
+        </select>
+    </div>
+</section>
+
+</main>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

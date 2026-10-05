@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Program | Balik Alindog</title>
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+.program-builder{margin-top:24px}.builder-header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}.day-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:16px}.day-card-header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.day-card-header h3{margin:0}.day-actions{display:flex;gap:8px;flex-wrap:wrap}.muscle-option input:checked+label{background:#111;color:#fff;border-color:#111}body.dark-mode .muscle-option input:checked+label{background:#f3f4f6;color:#111;border-color:#f3f4f6}.program-name-row{margin-bottom:18px}.save-status{margin-top:10px;color:var(--muted);font-size:14px}@media(max-width:800px){}@media(max-width:480px){}
+
+.saved-programs-panel {
+    padding: 0;
+    overflow: hidden;
+}
+
+.saved-programs-summary {
+    list-style: none;
+    padding: 16px 18px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+details[open] > .saved-count {
+    min-width: 26px;
+    height: 26px;
+    padding: 0 8px;
+    border-radius: 999px;
+    background: #111;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    margin-left: auto;
+    margin-right: 8px;
+}
+
+body.dark-mode .saved-count {
+    background: #f3f4f6;
+    color: #111;
+}
+
+.saved-programs-list {
+    border-top: 1px solid var(--line);
+    padding: 12px 14px 14px;
+}
+
+.saved-program-item {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface);
+    margin-bottom: 8px;
+    overflow: hidden;
+}
+
+.saved-program-item:last-child {
+    margin-bottom: 0;
+}
+
+.saved-program-item summary {
+    cursor: pointer;
+    padding: 11px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    list-style: none;
+}
+
+.saved-program-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.saved-program-name {
+    font-weight: 800;
+    flex: 1;
+}
+
+.saved-program-meta {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.saved-program-body {
+    border-top: 1px solid var(--line);
+    padding: 10px 12px 12px;
+}
+
+.saved-day-line {
+    padding: 7px 0;
+    border-bottom: 1px dashed var(--line);
+    line-height: 1.45;
+}
+
+.saved-day-line:last-child {
+    border-bottom: none;
+}
+
+.saved-program-controls {
+    margin-top: 10px;
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+
+.focus-chip-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.focus-chip {
+    position: relative;
+}
+
+.focus-chip input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.focus-chip label {
+    display: inline-block;
+    padding: 8px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.focus-chip input:checked + label {
+    background: #111;
+    border-color: #111;
+    color: #fff;
+}
+
+body.dark-mode .focus-chip input:checked + label {
+    background: #f3f4f6;
+    border-color: #f3f4f6;
+    color: #111;
+}
+
+</style>
+</head>
+<body>
+<header class="topbar">
+<div class="nav"><a class="brand" href="index.html">BALIK <span>ALINDOG</span></a><nav class="navlinks"><a data-nav href="index.html">HOME</a><a data-nav href="workouts.html">WORKOUTS / FOCUS AREA</a><a data-nav href="program.html">PROGRAM</a><a data-nav href="nutrition.html">NUTRITION</a><a data-nav href="reminders.html">REMINDERS / TIPS</a><a data-nav href="profile.html">PROFILE</a><a data-nav href="settings.html">SETTINGS</a></nav><div class="nav-actions"><a class="icon-btn" href="login.html">Login</a><button class="icon-btn menu-btn" id="menuBtn">☰</button></div></div>
+<nav class="mobile-nav" id="mobileNav"><a data-nav href="index.html">HOME</a><a data-nav href="workouts.html">WORKOUTS / FOCUS AREA</a><a data-nav href="program.html">PROGRAM</a><a data-nav href="nutrition.html">NUTRITION</a><a data-nav href="reminders.html">REMINDERS / TIPS</a><a data-nav href="profile.html">PROFILE</a><a data-nav href="settings.html">SETTINGS</a></nav>
+</header>
+<main class="container">
+<div class="section-head"><div><h2>Program</h2><p>Access available workout programs or build your own day-by-day program.</p></div></div>
+<section class="grid">
+<article class="card"><div class="card-body"><h3>Push / Pull / Legs</h3><p>A structured program organized around push, pull, and lower-body sessions.</p></div></article>
+<article class="card"><div class="card-body"><h3>Upper / Lower</h3><p>A program divided into upper-body and lower-body workout sessions.</p></div></article>
+<article class="card"><div class="card-body"><h3>Anterior / Posterior</h3><p>A program grouped around front-side and back-side muscle emphasis.</p></div></article>
+</section>
+
+
+
+<section class="panel program-builder">
+
+    <div class="builder-header">
+        <div>
+            <h2 style="margin:0 0 6px;">Customize Workout Program</h2>
+            <p class="muted" style="margin:0;">
+                Choose the workout focus areas you want to target, then save your custom workout.
+            </p>
+        </div>
+    </div>
+
+    <div class="program-name-row field">
+        <label for="programName">Workout Name / Label</label>
+        <input id="programName" type="text" placeholder="e.g., Chest + Biceps + Legs">
+    </div>
+
+    <div class="field" style="margin-top:16px;">
+        <label>Select Target Muscle Parts</label>
+
+        <div class="focus-chip-grid">
+            <div class="focus-chip">
+                <input type="checkbox" id="focus-chest" value="Chest">
+                <label for="focus-chest">Chest</label>
+            </div>
+
+            <div class="focus-chip">
+                <input type="checkbox" id="focus-triceps" value="Triceps">
+                <label for="focus-triceps">Triceps</label>
+            </div>
+
+            <div class="focus-chip">
+                <input type="checkbox" id="focus-shoulder" value="Shoulder">
+                <label for="focus-shoulder">Shoulder</label>
+            </div>
+
+            <div class="focus-chip">
+                <input type="checkbox" id="focus-back" value="Back">
+                <label for="focus-back">Back</label>
+            </div>
+
+            <div class="focus-chip">
+                <input type="checkbox" id="focus-biceps" value="Biceps">
+                <label for="focus-biceps">Biceps</label>
+            </div>
+
+            <div class="focus-chip">
+                <input type="checkbox" id="focus-core" value="Core">
+                <label for="focus-core">Core</label>
+            </div>
+
+            <div class="focus-chip">
+                <input type="checkbox" id="focus-legs" value="Legs">
+                <label for="focus-legs">Legs</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="program-actions">
+        <button class="btn btn-dark" type="button" id="saveProgramBtn">
+            Save Program
+        </button>
+
+        <button class="btn btn-outline" type="button" id="clearProgramBtn">
+            Reset
+        </button>
+    </div>
+
+    <div id="saveStatus" class="save-status"></div>
+
+</section>
+
+
+<section class="panel saved-programs-panel">
+    <div class="saved-programs-summary">
+        <span>Saved Custom Workouts</span>
+        <span id="savedProgramCount" class="saved-count">0</span>
+    </div>
+
+    <div id="savedProgramsList" class="saved-programs-list">
+        <p class="muted">No saved custom workouts yet.</p>
+    </div>
+</section>
+
+
+
+
+
+
+</main>
+<script src="assets/js/app.js"></script>
+<script>
+const allowedFocusAreas = [
+    "Chest",
+    "Triceps",
+    "Shoulder",
+    "Back",
+    "Biceps",
+    "Core",
+    "Legs"
+];
+
+let editingProgramId = null;
+
+function escapeProgramHtml(value) {
+    return String(value).replace(/[&<>"']/g, character => {
+        const chars = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        };
+        return chars[character];
+    });
+}
+
+function getPrograms() {
+    try {
+        return JSON.parse(localStorage.getItem("balikCustomPrograms") || "[]");
+    } catch {
+        return [];
+    }
+}
+
+function savePrograms(programs) {
+    localStorage.setItem("balikCustomPrograms", JSON.stringify(programs));
+}
+
+function getSelectedTargets() {
+    return Array.from(
+        document.querySelectorAll('.focus-chip input[type="checkbox"]:checked')
+    ).map(input => input.value);
+}
+
+function saveCustomProgram() {
+    const programName = document.querySelector("#programName").value.trim();
+    const targets = getSelectedTargets();
+
+    if (!programName) {
+        alert("Please enter a workout name or label.");
+        return;
+    }
+
+    if (targets.length === 0) {
+        alert("Please select at least one target muscle part.");
+        return;
+    }
+
+    const programs = getPrograms();
+
+    if (editingProgramId) {
+        const index = programs.findIndex(item => item.id === editingProgramId);
+
+        if (index !== -1) {
+            programs[index] = {
+                ...programs[index],
+                programName,
+                targets
+            };
+        }
+    } else {
+        const sameNameIndex = programs.findIndex(
+            item => item.programName.toLowerCase() === programName.toLowerCase()
+        );
+
+        if (sameNameIndex !== -1) {
+            programs[sameNameIndex] = {
+                ...programs[sameNameIndex],
+                programName,
+                targets
+            };
+        } else {
+            programs.push({
+                id: "program-" + Date.now(),
+                programName,
+                targets
+            });
+        }
+    }
+
+    savePrograms(programs);
+    renderSavedPrograms();
+    resetBuilder(false);
+    setSaveStatus("Program saved.");
+}
+
+function renderSavedPrograms() {
+    const programs = getPrograms();
+    const list = document.querySelector("#savedProgramsList");
+    const count = document.querySelector("#savedProgramCount");
+
+    count.textContent = programs.length;
+
+    if (programs.length === 0) {
+        list.innerHTML = '<p class="muted">No saved custom workouts yet.</p>';
+        return;
+    }
+
+    list.innerHTML = programs.map(program => `
+        <details class="saved-program-item">
+            <summary>
+                <span class="saved-program-name">${escapeProgramHtml(program.programName)}</span>
+            </summary>
+
+            <div class="saved-program-body">
+                <div class="saved-targets">
+                    <strong>Targets:</strong>
+                    ${program.targets.map(target => escapeProgramHtml(target)).join(", ")}
+                </div>
+
+                <div class="saved-program-controls">
+                    <button
+                        class="btn btn-outline"
+                        type="button"
+                        onclick="editSavedProgram('${program.id}')">
+                        Edit
+                    </button>
+
+                    <button
+                        class="btn btn-outline"
+                        type="button"
+                        onclick="deleteSavedProgram('${program.id}')">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </details>
+    `).join("");
+}
+
+function editSavedProgram(id) {
+    const program = getPrograms().find(item => item.id === id);
+    if (!program) return;
+
+    editingProgramId = id;
+    document.querySelector("#programName").value = program.programName;
+
+    document.querySelectorAll('.focus-chip input[type="checkbox"]').forEach(input => {
+        input.checked = program.targets.includes(input.value);
+    });
+
+    setSaveStatus("Editing saved program.");
+
+    window.scrollTo({
+        top: document.querySelector(".program-builder").offsetTop - 80,
+        behavior: "smooth"
+    });
+}
+
+function deleteSavedProgram(id) {
+    if (!confirm("Delete this saved custom workout?")) return;
+
+    const programs = getPrograms().filter(item => item.id !== id);
+    savePrograms(programs);
+
+    if (editingProgramId === id) {
+        resetBuilder(false);
+    }
+
+    renderSavedPrograms();
+}
+
+function resetBuilder(ask = true) {
+    if (ask && !confirm("Reset the current custom workout?")) return;
+
+    editingProgramId = null;
+    document.querySelector("#programName").value = "";
+
+    document.querySelectorAll('.focus-chip input[type="checkbox"]').forEach(input => {
+        input.checked = false;
+    });
+
+    setSaveStatus("");
+}
+
+function setSaveStatus(message) {
+    document.querySelector("#saveStatus").textContent = message;
+}
+
+function cleanOldSavedPrograms() {
+    const programs = getPrograms();
+    let changed = false;
+
+    const cleaned = programs.map(program => {
+        if (Array.isArray(program.targets)) {
+            return {
+                ...program,
+                targets: program.targets.filter(target => allowedFocusAreas.includes(target))
+            };
+        }
+
+        if (Array.isArray(program.days)) {
+            const merged = [];
+
+            program.days.forEach(day => {
+                if (Array.isArray(day.targets)) {
+                    day.targets.forEach(target => {
+                        if (allowedFocusAreas.includes(target) && !merged.includes(target)) {
+                            merged.push(target);
+                        }
+                    });
+                }
+            });
+
+            changed = true;
+
+            return {
+                id: program.id || "program-" + Date.now(),
+                programName: program.programName || "Custom Workout",
+                targets: merged
+            };
+        }
+
+        changed = true;
+
+        return {
+            id: program.id || "program-" + Date.now(),
+            programName: program.programName || "Custom Workout",
+            targets: []
+        };
+    });
+
+    if (changed) {
+        savePrograms(cleaned);
+    }
+}
+
+document.querySelector("#saveProgramBtn").addEventListener("click", saveCustomProgram);
+document.querySelector("#clearProgramBtn").addEventListener("click", () => resetBuilder(true));
+
+document.addEventListener("DOMContentLoaded", () => {
+    cleanOldSavedPrograms();
+    renderSavedPrograms();
+});
+</script>
+</body>
+</html>
